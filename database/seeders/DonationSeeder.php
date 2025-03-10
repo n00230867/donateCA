@@ -18,7 +18,7 @@ class DonationSeeder extends Seeder
 
         Donation::insert([
             [
-                'user_id' => 1,
+                // 'user_id' => 1,
                 'title' => 'Winter Jackets',
                 'image' => 'images/jackets.jpg',
                 'category' => 'Clothing',
@@ -29,7 +29,7 @@ class DonationSeeder extends Seeder
                 'updated_at' => $currentTimestamp,
             ],
             [
-                'user_id' => 2,
+                // 'user_id' => 2,
                 'title' => 'Coat Hangers',
                 'image' => 'images/coat_hangers.jpg',
                 'category' => 'Household Items',
@@ -40,7 +40,7 @@ class DonationSeeder extends Seeder
                 'updated_at' => $currentTimestamp,
             ],
             [
-                'user_id' => 3,
+                // 'user_id' => 3,
                 'title' => 'Used Books',
                 'image' => 'images/books.jpg',
                 'category' => 'Books',
@@ -51,7 +51,7 @@ class DonationSeeder extends Seeder
                 'updated_at' => $currentTimestamp,
             ],
             [
-                'user_id' => 4,
+                // 'user_id' => 4,
                 'title' => 'Kitchen Utensils',
                 'image' => 'images/kitchen_utensils.jpg',
                 'category' => 'Household Items',
@@ -62,7 +62,7 @@ class DonationSeeder extends Seeder
                 'updated_at' => $currentTimestamp,
             ],
             [
-                'user_id' => 5,
+                // 'user_id' => 5,
                 'title' => 'Children Toys',
                 'image' => 'images/toys.jpg',
                 'category' => 'Toys',
