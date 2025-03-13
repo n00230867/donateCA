@@ -12,7 +12,11 @@ class DonationController extends Controller
      */
     public function index()
     {
-        //
+        // Fetch all donations from the database
+        $donations = Donation::all();
+
+        // Pass them to the view
+        return view('donations.index', compact('donations'));
     }
 
     /**
@@ -36,7 +40,8 @@ class DonationController extends Controller
      */
     public function show(Donation $donation)
     {
-        //
+            return view('donations.show', compact('donation'));
+
     }
 
     /**
