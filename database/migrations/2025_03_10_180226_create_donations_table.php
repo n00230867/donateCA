@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             // $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('title');
-            $table->string('image')->nullable();
+            $table->string('image');
             $table->string('category');
             $table->integer('quantity');
             $table->string('description')->nullable();

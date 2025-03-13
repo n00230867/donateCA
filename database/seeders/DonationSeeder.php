@@ -20,7 +20,7 @@ class DonationSeeder extends Seeder
             [
                 // 'user_id' => 1,
                 'title' => 'Winter Jackets',
-                'image' => 'images/jackets.jpg',
+                'image' => 'jackets.jpg',
                 'category' => 'Clothing',
                 'quantity' => 5,
                 'description' => 'Gently used winter jackets in good condition.',

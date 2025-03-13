@@ -1,11 +1,9 @@
 @props(['title', 'image', 'category', 'quantity', 'description', 'availability'])
 
 <div class="card h-100 shadow-sm">
-    @if ($image)
-        <div class="text-center">
-            <img src="{{ asset('public/images/donations/' . $donation->image) }}" alt="{{ $title }}" class="card-img-top img-fluid" style="max-width: 300px;">
-        </div>
-    @endif
+    <div class="text-center">
+        <img src="{{ asset('images/donations/' . $image) }}" alt="{{ $title }}" class="card-img-top img-fluid" style="max-width: 300px;">
+    </div>
 
     <div class="card-body">
         <h2 class="card-title">{{ $title }}</h2>
