@@ -31,7 +31,7 @@ class DonationSeeder extends Seeder
             [
                 // 'user_id' => 2,
                 'title' => 'Coat Hangers',
-                'image' => 'images/coat_hangers.jpg',
+                'image' => 'coat_hangers.jpg',
                 'category' => 'Household Items',
                 'quantity' => 30,
                 'description' => 'Plastic and wooden coat hangers, various sizes.',
@@ -42,7 +42,7 @@ class DonationSeeder extends Seeder
             [
                 // 'user_id' => 3,
                 'title' => 'Used Books',
-                'image' => 'images/books.jpg',
+                'image' => 'books.jpg',
                 'category' => 'Books',
                 'quantity' => 10,
                 'description' => 'A mix of novels, textbooks, and self-help books.',
@@ -53,7 +53,7 @@ class DonationSeeder extends Seeder
             [
                 // 'user_id' => 4,
                 'title' => 'Kitchen Utensils',
-                'image' => 'images/kitchen_utensils.jpg',
+                'image' => 'kitchen_utensils.jpg',
                 'category' => 'Household Items',
                 'quantity' => 15,
                 'description' => 'Set of spoons, forks, knives, and cooking tools.',
@@ -64,7 +64,7 @@ class DonationSeeder extends Seeder
             [
                 // 'user_id' => 5,
                 'title' => 'Children Toys',
-                'image' => 'images/toys.jpg',
+                'image' => 'toys.jpg',
                 'category' => 'Toys',
                 'quantity' => 8,
                 'description' => 'Assorted toys for kids aged 3-7, including puzzles and stuffed animals.',
