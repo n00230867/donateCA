@@ -22,7 +22,7 @@
                                 <div class="card-body d-flex flex-column">
                                     <h5 class="card-title">{{ $donation->title }}</h5>
                                     <p class="card-text text-muted">{{ $donation->category }}</p>
-                                    <p class="card-text fw-bold">{{ $donation->description }}</p>
+                                    <p class="card-text fw-bold">{{ $donation->availability }}</p>
                                 </div>
                             </div>
                         </a>

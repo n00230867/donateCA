@@ -18,7 +18,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::get('/donations', [DonationController::class, 'index'])->name('donations.index');
-    Route::get('/donations/{donation}', [App\Http\Controllers\DonationController::class, 'show'])->name('donations.show');
+    Route::get('/donations/{donation}', [DonationController::class, 'show'])->name('donations.show');
 
 
 });
