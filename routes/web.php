@@ -21,6 +21,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/donations/{donation}', [DonationController::class, 'show'])->name('donations.show');
 
 
+    Route::get('/donations/create', [DonationController::class, 'create'])->name('donations.create');
+    Route::post('/donations', [DonationController::class, 'store'])->name('donations.store');
+    
+
+
+
 });
 
 require __DIR__.'/auth.php';

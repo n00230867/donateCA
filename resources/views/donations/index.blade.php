@@ -2,6 +2,13 @@
 
 @section('content')
 <div class="container py-4">
+    <!-- Success Message -->
+    @if(session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+
     <!-- Page Header -->
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h2 class="h4 mb-0">{{ __('All Donations') }}</h2>
@@ -18,7 +25,7 @@
                         <!-- Entire card is wrapped in a link -->
                         <a href="{{ route('donations.show', $donation->id) }}" class="text-decoration-none text-dark">
                             <div class="card h-100">
-                                    <img src="{{ asset('images/donations/' . $donation->image) }}" class="card-img-top" alt="{{ $donation->title }}">
+                                <img src="{{ asset('images/donations/' . $donation->image) }}" class="card-img-top" alt="{{ $donation->title }}">
                                 <div class="card-body d-flex flex-column">
                                     <h5 class="card-title">{{ $donation->title }}</h5>
                                     <p class="card-text text-muted">{{ $donation->category }}</p>
