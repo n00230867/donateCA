@@ -46,15 +46,19 @@ class DonationController extends Controller
         ]);
 
         // Handle Image Upload
-        $imagePath = null;
-        if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('donations', 'public'); 
+        // Handles image upload and naming.
+        $imageName = $request->hasFile('image')
+            ? time() . '.' . $request->image->extension()
+            : null;
+        
+        if ($imageName) {
+            $request->image->move(public_path('images/donations'), $imageName);
         }
 
         // Create the donation record
         Donation::create([
             'title' => $request->title,
-            'image' => $imagePath, // Save image path in database
+            'image' => $imageName, // Save image path in database
             'category' => $request->category,
             'category_custom' => $request->category_custom,
             'quantity' => $request->quantity,
@@ -79,22 +83,59 @@ class DonationController extends Controller
      */
     public function edit(Donation $donation)
     {
-        //
+        return view('donations.edit', compact('donation'));
     }
+
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, Donation $donation)
     {
-        //
+        // Validate incoming request
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'category' => 'required|string|max:255',
+            'category_custom' => 'nullable|string|max:255',
+            'quantity' => 'required|integer|min:1',
+            'description' => 'required|string|max:1000',
+            'availability' => 'required|string|max:255',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Image is optional
+        ]);
+
+        // Handle image upload only if a new one is provided
+        if ($request->hasFile('image')) {
+            // Delete old image if it exists
+            if ($donation->image && file_exists(public_path('images/donations/' . $donation->image))) {
+                unlink(public_path('images/donations/' . $donation->image));
+            }
+
+            // Store new image
+            $imageName = time() . '.' . $request->image->extension();
+            $request->image->move(public_path('images/donations'), $imageName);
+
+            // Update the donation with the new image
+            $donation->update([
+                'image' => $imageName,
+            ]);
+        }
+
+        // Update other donation details
+        $donation->update($request->only(['title', 'category', 'category_custom', 'quantity', 'description', 'availability']));
+
+        // Return success message only once
+        return redirect()->route('donations.index')->with('success', 'Donation updated successfully!');
     }
+
+
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(Donation $donation)
     {
-        //
+        $donation->delete();
+
+        return to_route('donations.index')->with('success', 'Donation deleted successfully!');
     }
 }
