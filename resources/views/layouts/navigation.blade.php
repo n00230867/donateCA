@@ -16,6 +16,11 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link {{ request()->routeIs('charities.index') ? 'active' : '' }}" href="{{ route('charities.index') }}">
+                        {{ __('View All Charities') }}
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('donations.create') ? 'active' : '' }}" href="{{ route('donations.create') }}">
                         {{ __('Create New Donation') }}
                     </a>
