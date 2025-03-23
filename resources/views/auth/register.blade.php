@@ -11,7 +11,7 @@
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
 
-                        <div class="row mb-3">
+                        <!-- <div class="row mb-3">
                             <div class="col-md-6">
                                 <label for="role" class="col-md-4 col-form-label text-md-end">Role</role>
                                 <select id="role" name="role" class="mt-1 block w-full" required>
@@ -22,7 +22,7 @@
                                     <span class="text-red-500 text-xs mt-1">{{ $message }}</span>
                                 @enderror
                             </div>
-                        </div>
+                        </div> -->
 
                         <div class="row mb-3">
                             <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
@@ -73,6 +73,18 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
                             </div>
                         </div>
+
+                        <div class="mb-3">
+                            <label for="role" class="form-label">Role</label>
+                            <select id="role" name="role" class="form-select" required>
+                                <option value="user" selected>User</option>
+                                <option value="admin">Admin</option>
+                            </select>
+                            @error('role')
+                                <div class="text-danger small mt-1">{{ $message }}</div>
+                            @enderror
+                        </div>
+
 
                         <div class="row mb-0">
                             <div class="col-md-8 offset-md-4">
