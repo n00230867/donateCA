@@ -50,8 +50,8 @@ Route::middleware('auth')->group(function () {
     // Show and Delete
     Route::get('/charities/{charity}', [CharityController::class, 'show'])->name('charities.show');
     Route::delete('/charities/{charity}', [CharityController::class, 'destroy'])->name('charities.destroy');
-
-
+// -------------------------------------------------------------------------------------------------------------------------------------------------
+// Dropoff Routes
     Route::post('/dropoff-locations', [DropoffLocationController::class, 'store'])->middleware('auth');
     Route::get('/dropoff-locations', [DropoffLocationController::class, 'index']);
 

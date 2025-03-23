@@ -21,9 +21,11 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('donations.create') ? 'active' : '' }}" href="{{ route('donations.create') }}">
-                        {{ __('Create New Donation') }}
-                    </a>
+                    @if(auth()->user()->role === 'admin')
+                        <a class="nav-link {{ request()->routeIs('donations.create') ? 'active' : '' }}" href="{{ route('donations.create') }}">
+                            {{ __('Create New Donation') }}
+                        </a>
+                    @endif
                 </li>
             </ul>
 

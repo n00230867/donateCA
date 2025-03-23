@@ -27,6 +27,9 @@ class DonationController extends Controller
      */
     public function create()
     {
+        if (auth()->user()->role !== 'admin'){
+            return redirect()->route('donations.index')->with('error', 'Access denied.');
+        }
         return view('donations.create');
     }
 

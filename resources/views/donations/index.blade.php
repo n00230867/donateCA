@@ -32,6 +32,7 @@
                                 </a>
 
                                 <!-- Action Buttons -->
+                                @if(auth()->user()->role === 'admin')
                                 <div class="card-footer bg-white border-0 d-flex justify-content-between">
                                     <!-- Edit Button -->
                                     <a href="{{ route('donations.edit', $donation->id) }}" class="btn btn-sm btn-outline-primary">
@@ -47,6 +48,7 @@
                                         </button>
                                     </form>
                                 </div>
+                                @endif
                             </div>
                         </div>
                     @endforeach
