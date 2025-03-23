@@ -61,6 +61,18 @@
                             </div>
                         </div>
 
+                        <div class="mb-3">
+                            <label for="role" class="form-label">Role</label>
+                            <select id="role" name="role" class="form-select" required>
+                                <option value="user" selected>User</option>
+                                <option value="admin">Admin</option>
+                            </select>
+                            @error('role')
+                                <div class="text-danger small mt-1">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+
                         <div class="row mb-0">
                             <div class="col-md-8 offset-md-4">
                                 <a class="btn btn-link" href="{{ route('login') }}">
