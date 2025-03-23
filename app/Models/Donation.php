@@ -14,4 +14,10 @@ class Donation extends Model
         'description',
         'availability',
     ];
+
+    public function dropoffLocations()
+    {
+        return $this->belongsToMany(DropoffLocation::class, 'donations_dropoff');
+    }
 }
+

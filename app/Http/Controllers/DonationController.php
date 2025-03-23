@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Donation;
+use App\Models\DropoffLocation;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -74,8 +76,9 @@ class DonationController extends Controller
      */
     public function show(Donation $donation)
     {
-            return view('donations.show', compact('donation'));
+        $dropoffLocations = DropoffLocation::all(); // Get all drop-off locations
 
+        return view('donations.show', compact('donation', 'dropoffLocations'));
     }
 
     /**
@@ -127,8 +130,6 @@ class DonationController extends Controller
         return redirect()->route('donations.index')->with('success', 'Donation updated successfully!');
     }
 
-
-
     /**
      * Remove the specified resource from storage.
      */
@@ -137,5 +138,20 @@ class DonationController extends Controller
         $donation->delete();
 
         return to_route('donations.index')->with('success', 'Donation deleted successfully!');
+    }
+
+    public function assignDropoff(Request $request, $donationId)
+    {
+        $request->validate([
+            'dropoff_location_id' => 'required|exists:dropoff_locations,id',
+        ]);
+    
+        $donation = Donation::findOrFail($donationId);
+        $dropoffLocation = DropoffLocation::findOrFail($request->dropoff_location_id);
+    
+        // Attach the drop-off location
+        $donation->dropoffLocations()->syncWithoutDetaching([$dropoffLocation->id]);
+    
+        return redirect()->back()->with('success', 'Drop-off location assigned successfully!');
     }
 }
