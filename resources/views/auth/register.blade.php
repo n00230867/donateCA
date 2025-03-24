@@ -11,6 +11,19 @@
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
 
+                        <!-- <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="role" class="col-md-4 col-form-label text-md-end">Role</role>
+                                <select id="role" name="role" class="mt-1 block w-full" required>
+                                    <option value="user" selected>User</option>
+                                    <option value="admin">Admin</option>
+                                </select>
+                                @error('role')
+                                    <span class="text-red-500 text-xs mt-1">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div> -->
+
                         <div class="row mb-3">
                             <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
 

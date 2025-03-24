@@ -12,4 +12,9 @@ class Charity extends Model
         'registration_no',
         'image',
     ];
+
+    public function dropoffLocations()
+    {
+        return $this->hasMany(DropoffLocation::class);
+    }
 }
