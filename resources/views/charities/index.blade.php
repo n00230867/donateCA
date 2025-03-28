@@ -5,7 +5,9 @@
     <!-- Page Header -->
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h2 class="h4 mb-0">{{ __('All Charities') }}</h2>
-        <a href="{{ route('charities.create') }}" class="btn btn-primary">Add Aharity</a>
+        @if(auth()->user()->role === 'admin')
+            <a href="{{ route('charities.create') }}" class="btn btn-primary">Add Caharity</a>
+        @endif
     </div>
 
     <!-- Charities Section -->
@@ -30,6 +32,8 @@
                                 </a>
 
                                 <!-- Action Buttons -->
+
+                                @if(auth()->user()->role === 'admin')
                                 <div class="card-footer bg-white border-0 d-flex justify-content-between">
                                     <!-- Edit Button -->
                                     <a href="{{ route('charities.edit', $charity->id) }}" class="btn btn-sm btn-outline-primary">
@@ -45,6 +49,9 @@
                                         </button>
                                     </form>
                                 </div>
+                                @endif
+
+
                             </div>
                         </div>
                     @endforeach
