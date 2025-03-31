@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DonationController;
 use App\Http\Controllers\CharityController;
 use App\Http\Controllers\DropoffLocationController;
+use App\Http\Controllers\OfferController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -56,7 +57,16 @@ Route::middleware('auth')->group(function () {
     Route::get('/dropoff-locations', [DropoffLocationController::class, 'index']);
 
     Route::post('/donations/{donation}/assign-dropoff', [DonationController::class, 'assignDropoff'])->middleware('auth');
-
+// -------------------------------------------------------------------------------------------------------------------------------------------------
+// // Offers Routes
+//     Route::get('/offers', [OfferController::class, 'index'])->name('offers.index');
+//     Route::post('/offers', [OfferController::class, 'store'])->name('offers.store');
 });
+
+Route::resource('offers', OfferController::class);
+Route::post('donations/{donation}/offers', [OfferController::class, 'store'])->name('offers.store');
+
+Route::get('donations/{donation}/offers/{offer}/edit', [OfferController::class, 'edit'])->name('offers.edit');
+Route::delete('donations/{donation}/offers/{offer}', [OfferController::class, 'destroy'])->name('offers.destroy');
 
 require __DIR__.'/auth.php';
