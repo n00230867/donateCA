@@ -58,8 +58,8 @@
                             </div>
                         </a>
 
-                        <!-- Admin Actions -->
-                        @if(auth()->user()->role === 'admin')
+                        <!-- Actions - Show for creator or admin -->
+                        @if(auth()->id() === $donation->user_id || auth()->user()->role === 'admin')
                         <div class="card-footer border-top-0 pt-0 pb-3 px-3" style="background-color:rgb(255, 255, 255);">
                             <div class="d-flex justify-content-between">
                                 <a href="{{ route('donations.edit', $donation->id) }}" 
@@ -72,7 +72,7 @@
                                     @method('DELETE')
                                     <button type="submit" 
                                             class="btn btn-sm btn-outline-danger rounded-pill px-3"
-                                            onclick="return confirm('Are you sure?')">
+                                            onclick="return confirm('Are you sure you want to delete this donation?')">
                                         <i class="fas fa-trash me-1"></i> Delete
                                     </button>
                                 </form>

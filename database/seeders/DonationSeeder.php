@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Donation;
+use App\Models\User;
 use Carbon\Carbon;
 
 class DonationSeeder extends Seeder
@@ -14,11 +15,21 @@ class DonationSeeder extends Seeder
      */
     public function run(): void
     {
+        // First, ensure we have at least one user
+        $user = User::firstOrCreate(
+            ['email' => 'test@example.com'],
+            [
+                'name' => 'Test User',
+                'password' => bcrypt('password'),
+                'role' => 'user'
+            ]
+        );
+
         $currentTimestamp = Carbon::now();
 
         Donation::insert([
             [
-                // 'user_id' => 1,
+                'user_id' => $user->id,
                 'title' => 'Winter Jackets',
                 'image' => 'jackets.jpg',
                 'category' => 'Clothing',
@@ -29,7 +40,7 @@ class DonationSeeder extends Seeder
                 'updated_at' => $currentTimestamp,
             ],
             [
-                // 'user_id' => 2,
+                'user_id' => $user->id,
                 'title' => 'Coat Hangers',
                 'image' => 'coat_hangers.jpg',
                 'category' => 'Household Items',
@@ -40,7 +51,7 @@ class DonationSeeder extends Seeder
                 'updated_at' => $currentTimestamp,
             ],
             [
-                // 'user_id' => 3,
+                'user_id' => $user->id,
                 'title' => 'Used Books',
                 'image' => 'books.jpg',
                 'category' => 'Books',
@@ -51,7 +62,7 @@ class DonationSeeder extends Seeder
                 'updated_at' => $currentTimestamp,
             ],
             [
-                // 'user_id' => 4,
+                'user_id' => $user->id,
                 'title' => 'Kitchen Utensils',
                 'image' => 'kitchen_utensils.jpg',
                 'category' => 'Household Items',
@@ -62,7 +73,7 @@ class DonationSeeder extends Seeder
                 'updated_at' => $currentTimestamp,
             ],
             [
-                // 'user_id' => 5,
+                'user_id' => $user->id,
                 'title' => 'Children Toys',
                 'image' => 'toys.jpg',
                 'category' => 'Toys',

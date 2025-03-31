@@ -14,8 +14,22 @@ class Offer extends Model
         'amount',
     ];
 
+    // Offer.php
+    public function donation()
+    {
+        return $this->belongsTo(Donation::class);
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);
     }
+
+    // Donation.php
+    public function offers()
+    {
+        return $this->hasMany(Offer::class);
+    }
+
+
 }

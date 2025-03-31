@@ -63,6 +63,8 @@ Route::middleware('auth')->group(function () {
 //     Route::post('/offers', [OfferController::class, 'store'])->name('offers.store');
 });
 
+Route::patch('/offers/{offer}/accept', [OfferController::class, 'accept'])->name('offers.accept');
+
 Route::resource('offers', OfferController::class);
 Route::post('donations/{donation}/offers', [OfferController::class, 'store'])->name('offers.store');
 
