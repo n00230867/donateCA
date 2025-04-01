@@ -14,8 +14,4 @@ class Charity extends Model
         'image',
     ];
 
-    public function dropoffLocations()
-    {
-        return $this->hasMany(DropoffLocation::class);
-    }
 }

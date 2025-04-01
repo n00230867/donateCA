@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Donation;
 use App\Models\Offer;
-use App\Models\DropoffLocation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -74,9 +73,8 @@ class DonationController extends Controller
      */
     public function show(Donation $donation)
     {
-        $dropoffLocations = DropoffLocation::all();
         $donation->load('offers.user');
-        return view('donations.show', compact('donation', 'dropoffLocations'));
+        return view('donations.show', compact('donation'));
     }
 
     /**
