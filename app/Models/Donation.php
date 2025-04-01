@@ -22,6 +22,11 @@ class Donation extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function charity()
+    {
+        return $this->belongsTo(Charity::class);
+    }
+
     public function dropoffLocations()
     {
         return $this->belongsToMany(DropoffLocation::class, 'donations_dropoff');

@@ -63,6 +63,12 @@ Route::middleware('auth')->group(function () {
 //     Route::post('/offers', [OfferController::class, 'store'])->name('offers.store');
 });
 
+// routes/web.php
+Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
+
+// Redirect /home to /dashboard if you want
+Route::redirect('/home', '/dashboard');
+
 Route::patch('/offers/{offer}/accept', [OfferController::class, 'accept'])->name('offers.accept');
 
 Route::resource('offers', OfferController::class);

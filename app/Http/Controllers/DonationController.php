@@ -150,4 +150,11 @@ class DonationController extends Controller
         $donation->delete();
         return redirect()->route('donations.index')->with('success', 'Donation deleted successfully!');
     }
+
+
+    public function myDonations()
+    {
+        $donations = auth()->user()->donations()->with('charity')->latest()->get();
+        return view('donations.my-donations', compact('donations'));
+    }
 }
