@@ -48,10 +48,10 @@
 
     <!-- Offers Section -->
     <div class="mt-5">
-        <h2 class="mb-4 text-primary position-relative">
-            <span class="bg-white pe-3">Offers</span>
-            <span class="position-absolute top-50 start-0 w-100 border-top"></span>
-        </h2>
+        <div class="d-flex align-items-center mb-4">
+            <h2 class="h4 m-0 pe-3 text-primary">Offers</h2>
+            <div class="flex-grow-1 border-top"></div>
+        </div>
 
         @if($donation->offers->isEmpty())
             <div class="text-center py-5 bg-white rounded-3 border">

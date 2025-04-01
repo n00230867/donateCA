@@ -22,9 +22,9 @@ class Donation extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function charity()
+    public function charities()
     {
-        return $this->belongsTo(Charity::class);
+        return $this->belongsToMany(Charity::class);
     }
 
     public function offers()

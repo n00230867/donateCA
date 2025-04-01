@@ -10,12 +10,8 @@ use Carbon\Carbon;
 
 class DonationSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
-        // First, ensure we have at least one user
         $user = User::firstOrCreate(
             ['email' => 'test@example.com'],
             [
@@ -27,7 +23,7 @@ class DonationSeeder extends Seeder
 
         $currentTimestamp = Carbon::now();
 
-        Donation::insert([
+        $donationsData = [
             [
                 'user_id' => $user->id,
                 'title' => 'Winter Jackets',
@@ -36,8 +32,7 @@ class DonationSeeder extends Seeder
                 'quantity' => 5,
                 'description' => 'Gently used winter jackets in good condition.',
                 'availability' => 'Available',
-                'created_at' => $currentTimestamp,
-                'updated_at' => $currentTimestamp,
+                'charities' => [$redCross->id, $focusIreland->id] // Assign to these charities
             ],
             [
                 'user_id' => $user->id,
@@ -47,8 +42,7 @@ class DonationSeeder extends Seeder
                 'quantity' => 30,
                 'description' => 'Plastic and wooden coat hangers, various sizes.',
                 'availability' => 'Available',
-                'created_at' => $currentTimestamp,
-                'updated_at' => $currentTimestamp,
+                'charities' => [$cancerSociety->id] // Assign to just this charity
             ],
             [
                 'user_id' => $user->id,
@@ -58,8 +52,7 @@ class DonationSeeder extends Seeder
                 'quantity' => 10,
                 'description' => 'A mix of novels, textbooks, and self-help books.',
                 'availability' => 'Available',
-                'created_at' => $currentTimestamp,
-                'updated_at' => $currentTimestamp,
+                'charities' => [$heartFoundation->id, $pietaHouse->id, $focusIreland->id] // Multiple charities
             ],
             [
                 'user_id' => $user->id,
@@ -69,8 +62,7 @@ class DonationSeeder extends Seeder
                 'quantity' => 15,
                 'description' => 'Set of spoons, forks, knives, and cooking tools.',
                 'availability' => 'Pending',
-                'created_at' => $currentTimestamp,
-                'updated_at' => $currentTimestamp,
+                'charities' => [$redCross->id] // Single charity
             ],
             [
                 'user_id' => $user->id,
@@ -80,9 +72,15 @@ class DonationSeeder extends Seeder
                 'quantity' => 8,
                 'description' => 'Assorted toys for kids aged 3-7, including puzzles and stuffed animals.',
                 'availability' => 'Available',
-                'created_at' => $currentTimestamp,
-                'updated_at' => $currentTimestamp,
+                'charities' => [$pietaHouse->id, $cancerSociety->id] // Two charities
             ],
-        ]);
+        ];
+
+        foreach ($donations as $donation) {
+            Donation::create(array_merge($donation, [
+                'created_at' => $currentTimestamp,
+                'updated_at' => $currentTimestamp
+            ]));
+        }
     }
 }

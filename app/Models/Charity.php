@@ -14,4 +14,9 @@ class Charity extends Model
         'image',
     ];
 
+
+    public function donations()
+    {
+        return $this->belongsToMany(Donation::class);
+    }
 }

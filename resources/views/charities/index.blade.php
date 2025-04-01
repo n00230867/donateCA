@@ -4,10 +4,7 @@
 <div class="container py-5">
     <!-- Page Header -->
     <div class="d-flex justify-content-between align-items-center mb-5">
-        <h2 class="display-6 fw-bold text-primary position-relative">
-            <span class="bg-white pe-3">{{ __('All Charities') }}</span>
-            <span class="position-absolute top-50 start-0 w-100 border-top z-n1"></span>
-        </h2>
+        <h1 class="text-primary">{{ __('All Charities') }}</h1>
         @if(auth()->user()->role === 'admin')
             <a href="{{ route('charities.create') }}" class="btn btn-primary btn-lg px-4">
                 <i class="fas fa-plus me-2"></i> Add Charity
@@ -31,21 +28,21 @@
         <div class="row g-4">
             @foreach($charities as $charity)
                 <div class="col-12 col-md-6 col-lg-4">
-                    <div class="card h-100 border-0 shadow-sm">
+                    <div class="card h-100 border-0 shadow" style="background-color: #ffffff; border-radius: 0.75rem;">
                         <a href="{{ route('charities.show', $charity->id) }}" class="text-decoration-none text-dark">
-                            <!-- Image Container - No Squishing -->
-                            <div class="bg-light" style="height: 200px; overflow: hidden; display: flex; justify-content: center; align-items: center;">
+                            <!-- Image Container -->
+                            <div class="bg-light" style="height: 200px; overflow: hidden; display: flex; justify-content: center; align-items: center; border-bottom: 1px solid #eee;">
                                 <img src="{{ asset('images/charities/' . $charity->image) }}" 
                                     class="img-fluid" 
                                     alt="{{ $charity->title }}"
-                                    style="max-height: 100%; width: auto; max-width: 100%; border-radius: 0.5rem 0.5rem 0 0;">
+                                    style="object-fit: contain; max-height: 100%; max-width: 100%;">
                             </div>
                             
                             <div class="card-body">
                                 <div class="d-flex justify-content-between align-items-start">
-                                    <h5 class="card-title mb-0">{{ $charity->title }}</h5>
+                                    <h5 class="card-title mb-0 fw-bold">{{ $charity->title }}</h5>
                                     @if($charity->registration_no)
-                                        <span class="badge bg-info text-dark">Reg #{{ $charity->registration_no }}</span>
+                                        <span class="badge bg-info text-dark fs-6">Reg #{{ $charity->registration_no }}</span>
                                     @endif
                                 </div>
                                 <p class="card-text mt-2 text-muted">
@@ -56,7 +53,7 @@
 
                         <!-- Admin Actions -->
                         @if(auth()->user()->role === 'admin')
-                        <div class="card-footer bg-white border-top-0 pt-0">
+                        <div class="card-footer bg-white border-top-0 pt-0 pb-3">
                             <div class="d-flex justify-content-between">
                                 <a href="{{ route('charities.edit', $charity->id) }}" 
                                     class="btn btn-sm btn-outline-primary rounded-pill px-3">
@@ -83,19 +80,26 @@
 </div>
 
 <style>
-    .z-n1 {
-        z-index: -1;
-    }
     .card {
-        border-radius: 0.5rem;
-        overflow: hidden;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        border: 1px solid rgba(0,0,0,0.1) !important;
+    }
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+    }
+    .bg-light {
+        background-color: #f8f9fa !important;
+    }
+    .card-title {
+        color: #2c3e50;
     }
     .badge {
         font-weight: 500;
+        padding: 0.35em 0.65em;
     }
-    .bg-light {
-        background-color: #f8f9fa!important;
+    body {
+        background-color: #f5f7fa;
     }
 </style>
-
 @endsection

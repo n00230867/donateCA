@@ -24,27 +24,26 @@
         <div class="row g-4">
             @foreach($donations as $donation)
                 <div class="col-12 col-md-6 col-lg-4">
-                    <div class="card h-100 border-0 shadow-sm" style="background-color:rgb(255, 255, 255);">
+                    <div class="card h-100 border-0 shadow" style="background-color: #ffffff; border-radius: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">
                         <a href="{{ route('donations.show', $donation->id) }}" class="text-decoration-none text-dark">
                             <!-- Image Container -->
-                            <div class="ratio ratio-16x9 bg-light position-relative">
+                            <div class="ratio ratio-16x9 bg-light position-relative" style="border-bottom: 1px solid rgba(0,0,0,0.1);">
                                 <img src="{{ asset('images/donations/' . $donation->image) }}" 
                                     class="img-fluid object-fit-cover"
                                     alt="{{ $donation->title }}"
-                                    style="border-radius: 0.5rem 0.5rem 0 0;">
-                                <div class="position-absolute bottom-0 start-0 end-0 border-bottom" style="border-color: rgba(0,0,0,0.1) !important;"></div>
+                                    style="border-radius: 0.75rem 0.75rem 0 0;">
                             </div>
                             
                             <div class="card-body">
                                 <div class="d-flex justify-content-between align-items-start mb-2">
-                                    <h5 class="card-title mb-0">{{ $donation->title }}</h5>
+                                    <h5 class="card-title mb-0 fw-bold">{{ $donation->title }}</h5>
                                     <span class="badge bg-secondary">{{ $donation->category }}</span>
                                 </div>
                                 
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <span class="badge 
+                                    <span class="badge fs-6
                                         @if($donation->availability === 'available') bg-success
-                                        @elseif($donation->availability === 'pending') bg-warning
+                                        @elseif($donation->availability === 'pending') bg-warning text-dark
                                         @else bg-danger
                                         @endif text-capitalize">
                                         {{ $donation->availability }}
@@ -60,7 +59,7 @@
 
                         <!-- Actions - Show for creator or admin -->
                         @if(auth()->id() === $donation->user_id || auth()->user()->role === 'admin')
-                        <div class="card-footer border-top-0 pt-0 pb-3 px-3" style="background-color:rgb(255, 255, 255);">
+                        <div class="card-footer border-top-0 pt-0 pb-3 px-3 bg-white">
                             <div class="d-flex justify-content-between">
                                 <a href="{{ route('donations.edit', $donation->id) }}" 
                                     class="btn btn-sm btn-outline-primary rounded-pill px-3">
@@ -87,23 +86,32 @@
 </div>
 
 <style>
+    .card {
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+    }
     .ratio-16x9::before {
-        padding-top: 100%; /* 16:9 Aspect Ratio */
+        padding-top: 100%;
     }
     .object-fit-cover {
         object-fit: cover;
         object-position: center;
     }
-    .card {
-        border-radius: 0.5rem;
-        overflow: hidden;
-    }
     .badge {
         font-weight: 500;
+        padding: 0.35em 0.65em;
     }
     .bg-light {
         background-color: #f8f9fa !important;
     }
+    body {
+        background-color: #f5f7fa;
+    }
+    .card-title {
+        color: #2c3e50;
+    }
 </style>
-
 @endsection

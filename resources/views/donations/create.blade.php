@@ -63,6 +63,29 @@
             </div>
 
             <div class="mb-3">
+                <label class="form-label">Assign to Charity</label>
+                @foreach($charities as $charity)
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" 
+                            name="charity_id" 
+                            value="{{ $charity->id }}"
+                            id="charity_{{ $charity->id }}"
+                            @if(isset($donation) && $donation->charities->contains($charity->id)) checked @endif
+                            required>
+                        <label class="form-check-label" for="charity_{{ $charity->id }}">
+                            {{ $charity->title }}
+                            @if($charity->registration_no)
+                                (Reg #{{ $charity->registration_no }})
+                            @endif
+                        </label>
+                    </div>
+                @endforeach
+                @error('charity_id')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div class="mb-3">
                 <label for="availability" class="form-label">Availability:</label>
                 <select name="availability" id="availability" class="form-control" required>
                     <option value="available">Available</option>

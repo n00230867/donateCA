@@ -67,10 +67,10 @@ class CharityController extends Controller
      * Display the specified resource.
      */
     public function show(Charity $charity)
-    {
-            return view('charities.show', compact('charity'));
-
-    }
+{
+    $charity->load('donations');
+    return view('charities.show', compact('charity'));
+}
 
     /**
      * Show the form for editing the specified resource.

@@ -37,6 +37,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/donations/{donation}', [DonationController::class, 'destroy'])->name('donations.destroy');
 // -------------------------------------------------------------------------------------------------------------------------------------------------
 // Charity Routes
+    Route::resource('charities', CharityController::class)->middleware('auth');
+
     Route::get('/charities', [CharityController::class, 'index'])->name('charities.index');
 
     // Ensure 'create' is above '/charities/{charity}'
