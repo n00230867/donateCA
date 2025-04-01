@@ -88,40 +88,32 @@ class OfferController extends Controller
         return redirect()->route('donations.show', $donation)->with('success', 'Offer deleted successfully!');
 
     }
+    
     public function accept(Offer $offer)
-    {
-        try {
-            // Verify the offer exists and has a donation
-            if (!$offer->exists || !$offer->donation) {
-                throw new Exception('Offer or associated donation not found');
-            }
-
-            // Verify the authenticated user owns the donation
-            if (auth()->id() !== $offer->donation->user_id) {
-                throw new Exception('Unauthorized action');
-            }
-
-            // Verify the donation is still available
-            if ($offer->donation->availability !== 'available') {
-                throw new Exception('This donation is no longer available');
-            }
-
-            DB::transaction(function () use ($offer) {
-                // Mark the donation as unavailable
-                $offer->donation->update([
-                    'availability' => 'unavailable',
-                    'accepted_offer_id' => $offer->id
-                ]);
-                
-                // You can add additional logic here if needed
-                // For example, notify the offer creator
-            });
-
-            return redirect()->back()->with('success', 'Offer accepted successfully!');
-
-        } catch (Exception $e) {
-            return redirect()->back()->with('error', $e->getMessage());
+{
+    DB::beginTransaction();
+    try {
+        if (auth()->id() !== $offer->donation->user_id) {
+            throw new \Exception('Unauthorized action');
         }
+
+        $offer->update([
+            'status' => 'accepted',
+            'updated_at' => now()
+        ]);
+        
+        $offer->donation->update([
+            'availability' => 'unavailable',
+            'accepted_offer_id' => $offer->id
+        ]);
+        
+        DB::commit();
+        
+        return redirect()->back()->with('success', 'Offer accepted successfully!');
+    } catch (\Exception $e) {
+        DB::rollBack();
+        return redirect()->back()->with('error', $e->getMessage());
     }
+}
 
 }

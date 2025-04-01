@@ -9,12 +9,12 @@ class Offer extends Model
 {
     protected $fillable = [
         'donation_id',
+        'status',
         'user_id', 
         'comment', 
         'amount',
     ];
 
-    // Offer.php
     public function donation()
     {
         return $this->belongsTo(Donation::class);
@@ -25,7 +25,6 @@ class Offer extends Model
         return $this->belongsTo(User::class);
     }
 
-    // Donation.php
     public function offers()
     {
         return $this->hasMany(Offer::class);

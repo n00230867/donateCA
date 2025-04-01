@@ -18,7 +18,7 @@
                             <h1 class="card-title display-6 fw-bold text-primary">{{ $donation->title }}</h1>
                             <span class="badge bg-secondary mb-3">{{ $donation->category }}</span>
                         </div>
-                        <span class="badge bg-{{ $donation->availability === 'available' ? 'success' : 'warning' }} fs-6">
+                        <span class="badge bg-{{ $donation->availability === 'available' ? 'success' : ($donation->availability === 'pending' ? 'warning' : 'danger') }} fs-6">
                             {{ ucfirst($donation->availability) }}
                         </span>
                     </div>
@@ -35,7 +35,6 @@
                         <p class="card-text fs-5">{{ $donation->description ?? 'No description provided' }}</p>
                     </div>
                     
-                    <!-- Donor Actions -->
                     @if(auth()->id() === $donation->user_id && $donation->availability === 'available')
                         <div class="alert alert-info mt-3">
                             <i class="fas fa-info-circle me-2"></i>
@@ -64,7 +63,7 @@
             <div class="row g-4">
                 @foreach($donation->offers as $offer)
                     <div class="col-md-6">
-                        <div class="card h-100 border {{ $offer->availability === 'accepted' ? 'border-success border-3' : '' }}">
+                        <div class="card h-100 border {{ $offer->status === 'accepted' ? 'border-success border-3' : '' }}">
                             <div class="card-body">
                                 <div class="d-flex align-items-center mb-3">
                                     <div class="avatar bg-primary text-white rounded-circle me-3" style="width: 40px; height: 40px; line-height: 40px; text-align: center;">
@@ -73,9 +72,9 @@
                                     <h5 class="card-title mb-0">{{ $offer->user->name }}</h5>
                                 </div>
                                 <div class="d-flex justify-content-between align-items-center mb-2">
-                                    <span class="badge bg-{{ $offer->availability === 'accepted' ? 'success' : 'success-subtle' }} text-{{ $offer->availability === 'accepted' ? 'white' : 'success' }} fs-6">
+                                    <span class="badge bg-{{ $offer->status === 'accepted' ? 'success' : 'info' }} text-white fs-6">
                                         €{{ number_format($offer->amount, 2) }}
-                                        @if($offer->availability === 'accepted')
+                                        @if($offer->status === 'accepted')
                                             <i class="fas fa-check ms-1"></i>
                                         @endif
                                     </span>
@@ -87,8 +86,7 @@
                                     </div>
                                 @endif
                                 
-                                <!-- Offer availability -->
-                                @if($offer->availability === 'accepted')
+                                @if($offer->status === 'accepted')
                                     <div class="alert alert-success mt-3 mb-0">
                                         <i class="fas fa-check-circle me-2"></i>
                                         This offer has been accepted
@@ -109,7 +107,6 @@
             </div>
         @endif
 
-        <!-- Offer Form -->
         @auth
             @if($donation->availability === 'available' && auth()->id() !== $donation->user_id)
             <div class="mt-5">
@@ -153,7 +150,6 @@
         @endauth
     </div>
 
-    <!-- Alerts -->
     @if(session('success'))
         <div class="toast-container position-fixed bottom-0 end-0 p-3">
             <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
@@ -185,5 +181,4 @@
         background-color: white;
     }
 </style>
-
 @endsection

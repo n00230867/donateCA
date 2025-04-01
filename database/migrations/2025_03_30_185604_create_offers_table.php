@@ -16,9 +16,10 @@ return new class extends Migration
             $table->foreignId('donation_id')->constrained()->onDelete('cascade');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             
-            // Replace the single text field with these:
-            $table->decimal('amount', 10, 2); // For monetary offers (10 digits, 2 decimal places)
-            $table->text('comment')->nullable(); // Optional comment
+            $table->decimal('amount', 10, 2);
+            $table->text('comment')->nullable();
+
+            $table->string('status')->default('pending');
             
             $table->timestamps();
         });
