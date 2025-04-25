@@ -2,22 +2,25 @@
 
 namespace Database\Seeders;
 
+use Illuminate\Database\Seeder;
 use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\Donation;
 use App\Models\Charity;
-use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     */
     public function run(): void
     {
-        // User::factory(10)->create();
-
         $this->call(DonationSeeder::class);
         $this->call(CharitySeeder::class);
+
+        User::factory(100)->create();
+        Charity::factory(200)->create();
+
+        Donation::factory(500)->create()->each(function ($donation) {
+            $donation->charities()->attach(
+                Charity::inRandomOrder()->take(rand(1, 3))->pluck('id')
+            );
+        });
     }
 }

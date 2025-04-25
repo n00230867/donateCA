@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('image');
             $table->string('category');
             $table->integer('quantity');
-            $table->string('description')->nullable();
+            $table->text('description')->nullable();
             $table->enum('availability', ['available', 'pending', 'unavailable'])->default('available');
             $table->timestamps();
         });
