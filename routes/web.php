@@ -55,7 +55,6 @@ Route::middleware('auth')->group(function () {
 // -------------------------------------------------------------------------------------------------------------------------------------------------
 });
 
-// routes/web.php
 Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
 
 // Redirect /home to /dashboard if you want

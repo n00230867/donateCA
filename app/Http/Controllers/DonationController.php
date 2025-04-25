@@ -13,12 +13,20 @@ class DonationController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        // Fetch all donations from the database
-        $donations = Donation::all();
-        return view('donations.index', compact('donations'));
+    public function index(Request $request)
+{
+    $query = Donation::query();
+
+    // Filter by search term
+    if ($request->has('search')) {
+        $search = $request->input('search');
+        $query->where('title', 'like', "%{$search}%")->orWhere('category', 'like', "%{$search}%");
     }
+
+    $donations = $query->latest()->get();
+    return view('donations.index', compact('donations'));
+}
+
 
     /**
      * Show the form for creating a new resource.

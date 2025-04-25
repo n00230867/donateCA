@@ -62,8 +62,17 @@
                 <textarea name="description" id="description" class="form-control"></textarea>
             </div>
 
+            <!-- Charity Assignment (Optional) -->
             <div class="mb-3">
-                <label class="form-label">Assign to Charity</label>
+                <label class="form-label">Assign to Charity (Optional)</label>
+                <!-- None Option -->
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="charity_id" value="none" id="charity_none" @if(old('charity_id') === 'none') checked @endif>
+                    <label class="form-check-label" for="charity_none">
+                        None
+                    </label>
+                </div>
+
                 @foreach($charities as $charity)
                     <div class="form-check">
                         <input class="form-check-input" type="radio" 
@@ -71,7 +80,7 @@
                             value="{{ $charity->id }}"
                             id="charity_{{ $charity->id }}"
                             @if(isset($donation) && $donation->charities->contains($charity->id)) checked @endif
-                            required>
+                            @if(old('charity_id') == $charity->id) checked @endif>
                         <label class="form-check-label" for="charity_{{ $charity->id }}">
                             {{ $charity->title }}
                             @if($charity->registration_no)

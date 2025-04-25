@@ -2,9 +2,20 @@
 
 @section('content')
 <div class="container py-5">
-    <!-- Page Header -->
-    <div class="d-flex justify-content-between align-items-center mb-5">
-        <h1 class="text-primary">{{ __('All Donations') }}</h1>
+
+    <!-- Page Header with Search -->
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mb-5 gap-3">
+        <h1 class="text-primary mb-0">{{ __('All Donations') }}</h1>
+
+        <!-- Search Form -->
+        <form method="GET" action="{{ route('donations.index') }}" class="input-group search-bar w-100 w-md-auto" style="max-width: 400px;">
+            <input type="text" name="search" value="{{ request('search') }}" class="form-control shadow-sm"
+                placeholder="Search donations..." aria-label="Search Donations">
+            <button class="btn btn-primary d-flex align-items-center justify-content-center" type="submit">
+                <i class="fas fa-search me-1"></i> Search
+            </button>
+        </form>
+
         <a href="{{ route('donations.create') }}" class="btn btn-primary btn-lg px-4">
             <i class="fas fa-plus me-2"></i> Add Donation
         </a>
@@ -85,6 +96,7 @@
     @endif
 </div>
 
+<!-- Styles -->
 <style>
     .card {
         transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -112,6 +124,16 @@
     }
     .card-title {
         color: #2c3e50;
+    }
+    .search-bar input.form-control {
+        border-radius: 2rem 0 0 2rem;
+        padding: 0.6rem 1.2rem;
+    }
+    .search-bar .btn {
+        border-radius: 0 2rem 2rem 0;
+        padding: 0.6rem 1.2rem;
+        display: flex;
+        align-items: center;
     }
 </style>
 @endsection
