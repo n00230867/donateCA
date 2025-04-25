@@ -87,13 +87,4 @@
     </div>
 </div>
 
-<style>
-    .card {
-        background-color: white;
-    }
-    .rounded-start {
-        border-top-left-radius: 0.5rem !important;
-        border-bottom-left-radius: 0.5rem !important;
-    }
-</style>
 @endsection

@@ -79,27 +79,4 @@
     @endif
 </div>
 
-<style>
-    .card {
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
-        border: 1px solid rgba(0,0,0,0.1) !important;
-    }
-    .card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
-    }
-    .bg-light {
-        background-color: #f8f9fa !important;
-    }
-    .card-title {
-        color: #2c3e50;
-    }
-    .badge {
-        font-weight: 500;
-        padding: 0.35em 0.65em;
-    }
-    body {
-        background-color: #f5f7fa;
-    }
-</style>
 @endsection

@@ -173,12 +173,4 @@
     @endif
 </div>
 
-<style>
-    .avatar {
-        font-weight: bold;
-    }
-    .card {
-        background-color: white;
-    }
-</style>
 @endsection

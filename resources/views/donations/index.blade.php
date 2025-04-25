@@ -96,44 +96,4 @@
     @endif
 </div>
 
-<!-- Styles -->
-<style>
-    .card {
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-    .card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
-    }
-    .ratio-16x9::before {
-        padding-top: 100%;
-    }
-    .object-fit-cover {
-        object-fit: cover;
-        object-position: center;
-    }
-    .badge {
-        font-weight: 500;
-        padding: 0.35em 0.65em;
-    }
-    .bg-light {
-        background-color: #f8f9fa !important;
-    }
-    body {
-        background-color: #f5f7fa;
-    }
-    .card-title {
-        color: #2c3e50;
-    }
-    .search-bar input.form-control {
-        border-radius: 2rem 0 0 2rem;
-        padding: 0.6rem 1.2rem;
-    }
-    .search-bar .btn {
-        border-radius: 0 2rem 2rem 0;
-        padding: 0.6rem 1.2rem;
-        display: flex;
-        align-items: center;
-    }
-</style>
 @endsection
