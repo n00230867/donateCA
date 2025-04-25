@@ -21,3 +21,4 @@ class CharityFactory extends Factory
         ];
     }
 }
+ 
