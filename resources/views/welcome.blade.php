@@ -6,48 +6,6 @@
     <title>Welcome to CharityHub</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root {
-            --primary-color: #4e73df;
-            --secondary-color: #1cc88a;
-            --accent-color: #e74a3b;
-        }
-        
-        body {
-            background: #f8f9fc;
-            font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            min-height: 100vh;
-        }
-        
-        .welcome-card {
-            background: white;
-            border-radius: 1rem;
-            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
-            padding: 2.5rem;
-            max-width: 600px;
-            width: 100%;
-        }
-        
-        .welcome-text {
-            color: #5a5c69;
-            margin-bottom: 2rem;
-            font-size: 1.1rem;
-        }
-        
-        .btn-welcome {
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.5rem;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            margin: 0.5rem;
-            min-width: 150px;
-        }
-        
-        .logo-img {
-            height: 120px;
-            margin-bottom: 1.5rem;
-        }
-    </style>
 </head>
 <body class="d-flex justify-content-center align-items-center p-3">
 
