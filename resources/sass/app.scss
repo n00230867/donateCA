@@ -1,16 +1,13 @@
-// Fonts
 @import url('https://fonts.bunny.net/css?family=Nunito');
-
-// Variables
 @import 'variables';
-
-// Bootstrap
 @import 'bootstrap/scss/bootstrap';
 
-/* Animation */
+body {
+    background-color: #f5f7fa;
+}
+
 .fade-out {
-    animation: fadeOut 2s linear;
-    animation-fill-mode: forwards;
+    animation: fadeOut 2s linear forwards;
 }
 
 @keyframes fadeOut {
@@ -18,28 +15,21 @@
     100% { opacity: 0; }
 }
 
-/* Base Styles */
-body {
-    background-color: #f5f7fa;
-}
-
-/* Card Styles */
 .card {
     background-color: white;
-    border: 1px solid rgba(0,0,0,0.1) !important;
+    border: 1px solid rgba(0, 0, 0, 0.1) !important;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
-    
-    &:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
-    }
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1) !important;
 }
 
 .card-title {
     color: #2c3e50;
 }
 
-/* Ratio and Object Fit */
 .ratio-16x9::before {
     padding-top: 100%;
 }
@@ -49,18 +39,27 @@ body {
     object-position: center;
 }
 
-/* Badge Styles */
 .badge {
     font-weight: 500;
     padding: 0.35em 0.65em;
 }
 
-/* Background Colors */
+.badge.bg-warning.text-dark {
+    color: #212529 !important;
+}
+
 .bg-light {
     background-color: #f8f9fa !important;
 }
 
-/* Search Bar Styles */
+.bg-gradient-primary {
+    background: linear-gradient(135deg, #0d6efd 0%, #0b5ed7 100%);
+}
+
+.btn {
+    transition: all 0.2s ease;
+}
+
 .search-bar {
     input.form-control {
         border-radius: 2rem 0 0 2rem;
@@ -75,13 +74,35 @@ body {
     }
 }
 
-/* Avatar */
 .avatar {
     font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
-/* Border Radius Utilities */
+.rounded-4 {
+    border-radius: 1rem !important;
+}
+
+.rounded-bottom-4 {
+    border-bottom-left-radius: 1rem !important;
+    border-bottom-right-radius: 1rem !important;
+}
+
 .rounded-start {
     border-top-left-radius: 0.5rem !important;
     border-bottom-left-radius: 0.5rem !important;
+}
+
+.list-group-item {
+    transition: background-color 0.2s ease;
+}
+
+.list-group-item:hover {
+    background-color: #f8f9fa;
+}
+
+.border-bottom {
+    border-bottom: 1px solid #e9ecef !important;
 }

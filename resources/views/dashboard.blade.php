@@ -23,9 +23,6 @@
             </div>
 
             <div class="d-flex flex-wrap justify-content-center gap-3">
-                <a href="{{ route('donations.index') }}" class="btn btn-primary px-4 py-2 rounded-pill shadow-sm">
-                    <i class="fas fa-box-open me-2"></i> My Donations
-                </a>
                 <a href="{{ route('charities.index') }}" class="btn btn-primary px-4 py-2 rounded-pill shadow-sm">
                     <i class="fas fa-hands-helping me-2"></i> Charities
                 </a>
@@ -165,45 +162,4 @@
         </div>
     </div>
 </div>
-
-<style>
-    .bg-gradient-primary {
-        background: linear-gradient(135deg, #0d6efd 0%, #0b5ed7 100%);
-    }
-    .rounded-4 {
-        border-radius: 1rem !important;
-    }
-    .rounded-bottom-4 {
-        border-bottom-left-radius: 1rem !important;
-        border-bottom-right-radius: 1rem !important;
-    }
-    .avatar {
-        font-weight: bold;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-    }
-    .card {
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-    .card:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1) !important;
-    }
-    .list-group-item {
-        transition: background-color 0.2s ease;
-    }
-    .list-group-item:hover {
-        background-color: #f8f9fa;
-    }
-    .btn {
-        transition: all 0.2s ease;
-    }
-    .border-bottom {
-        border-bottom: 1px solid #e9ecef !important;
-    }
-    .badge.bg-warning.text-dark {
-        color: #212529 !important;
-    }
-</style>
 @endsection
